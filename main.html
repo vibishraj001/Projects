@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Price Comparison</h1>
+        <form method="post">
+            <input type="text" name="item" placeholder="Search for an item..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if products %}
+            <h2>Results</h2>
+            <table>
+                <tr>
+                    <th>Website</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.site }}</td>
+                    <td>{{ product.title }}</td>
+                    <td>{{ product.price }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
